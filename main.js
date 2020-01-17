@@ -15,6 +15,7 @@ var levels
 var user
 var leftBumpers = []
 var rightBumpers = []
+var debug = false
 
 function levelChange() {
   // rotate levels
@@ -43,7 +44,7 @@ function drive() {
   var tempL1 = leftBumpers.x[0]
   var tempR1 = rightBumpers.x[0]
 
-  // adjust
+  // don't change directions when the level is changing
   if (!hasLeveled) {
     let direction = chooseDirection(leftBumpers.x[0], rightBumpers.x[0])
     leftBumpers.x[0] += scale*direction
@@ -71,11 +72,11 @@ function crashed() {
   let right = rightBumpers.x[rightBumpers.x.length-1]
 
   // check if user hit left bumper
-  if(user.x == left+3 || user.x < left+18) {
+  if(user.x <= left+10) {
     return true
 
   // check if user hit right bumper
-  } else if (user.x == right-3 || user.x > right-18) {
+} else if(user.x >= right-8) {
     return true
 
   }
@@ -98,8 +99,9 @@ function init() {
 
   let width = 480
   let centerScreen = 240
-  let height = window.innerHeight-20
-  scale = parseInt(height/28)
+  let height = window.innerHeight
+  // scale = window.innerHeight/
+  // scale = parseInt(height/24) // this magic number needs to go
   score = 0
   level = 0
   levels = [1,2,3,4,5,6]
@@ -113,6 +115,9 @@ function init() {
   ctx.font = '48px Ubuntu'
 
   user = new User('*',  centerScreen, height)
+  scale = window.innerHeight/parseInt(ctx.measureText('^').width)
+  // scale = window.innerHeight/parseInt(ctx.TextMetrics.emHeightAscent)
+
   leftBumpers = new Bumpers('^', centerScreen-90, height, scale)
   rightBumpers = new Bumpers('^', centerScreen+90, height, scale)
 
@@ -129,14 +134,19 @@ function draw() {
     // ctx.fillRect(0, 0, canvas.width, canvas.height)
     // ctx.fillStyle = 'black'
 
-    // user
-    ctx.fillText(user.char,user.x,user.y)
-
     // bumpers
     for(i=0; i < leftBumpers.x.length; i++) {
+      if(debug && (i==0 || i==leftBumpers.x.length-1)){ctx.fillStyle = '#849684'}
       ctx.fillText(leftBumpers.char, leftBumpers.x[i], leftBumpers.y[i])
       ctx.fillText(rightBumpers.char, rightBumpers.x[i], rightBumpers.y[i])
+      if(debug) {ctx.fillStyle = 'black'}
+      // ctx.addHitRegion({id: "bumpers"});
     }
+
+    // user
+    ctx.font = '36px Ubuntu'
+    ctx.fillText(user.char,user.x,user.y)
+    ctx.font = '48px Ubuntu'
 
     // scoreboard
     ctx.font = 'bold 12px Ubuntu'

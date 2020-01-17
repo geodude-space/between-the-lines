@@ -2,11 +2,11 @@ function Bumpers(char, x, y, scale) {
   this.char = char
   this.x = []
   this.y = []
-
-  for(i=0; i < scale; i++) {
+  for(i=0; i < scale && (i*scale < window.innerHeight+20); i++) {
     this.x[i] = x
-    this.y[i] = 20+i*scale
+    this.y[i] = i*scale
   }
+  console.log("length bumper: ", this.x.length)
 }
 
 function anyDirection(bumper) {

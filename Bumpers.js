@@ -6,7 +6,6 @@ function Bumpers(char, x, y, scale) {
     this.x[i] = x
     this.y[i] = i*scale
   }
-  console.log("length bumper: ", this.x.length)
 }
 
 function anyDirection(bumper) {

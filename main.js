@@ -1,4 +1,4 @@
-var canvas
+var gameBoard
 var ctx
 
 var scale
@@ -94,30 +94,50 @@ function keyPress(e){
   }
 }
 
-function init() {
-  window.addEventListener("keydown", keyPress, false);
+function touchPress(e) {
+  // move left/right depending on what half of the screen was tapped
+  // double tap zoom was disables in the css
+  let touchX = e.touches[0].clientX
+  if(touchX < window.innerWidth/2) {
+    user.x -= 10
+  } else {
+    user.x += 10
+  }
+}
 
+function init() {
+  window.addEventListener("keydown", keyPress, false)
+  window.addEventListener("touchstart", touchPress, false)
+
+  let height =  800//window.innerHeight
   let width = 480
-  let centerScreen = 240
-  let height = window.innerHeight
-  // scale = window.innerHeight/
-  // scale = parseInt(height/24) // this magic number needs to go
+  let centerScreen = width/2
+
   score = 0
   level = 0
   levels = [1,2,3,4,5,6]
 
-  canvas = document.getElementById('gameBoard')
-  canvas.width = width
-  canvas.height = height
+  gameBoard = document.getElementById('gameBoard')
 
-  ctx = canvas.getContext('2d')
+  const pixelRatio = window.devicePixelRatio || 1;
+
+  gameBoard.width = width * pixelRatio;
+  gameBoard.height = height * pixelRatio;
+
+  gameBoard.style.width = `${width}px`;
+  gameBoard.style.height = `${height}px`;
+
+  ctx = gameBoard.getContext('2d')
+  ctx.mozImageSmoothingEnabled = false;  // firefox
+  ctx.imageSmoothingEnabled = false;
+  ctx.scale(pixelRatio, pixelRatio);
   ctx.fillStyle = 'black';
   ctx.font = '48px Ubuntu'
 
-  user = new User('*',  centerScreen, height)
-  scale = window.innerHeight/parseInt(ctx.measureText('^').width)
-  // scale = window.innerHeight/parseInt(ctx.TextMetrics.emHeightAscent)
 
+  user = new User('*',  centerScreen, height)
+
+  scale = height/28  //parseInt(ctx.measureText('^').width)
   leftBumpers = new Bumpers('^', centerScreen-90, height, scale)
   rightBumpers = new Bumpers('^', centerScreen+90, height, scale)
 
@@ -127,11 +147,11 @@ function init() {
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, gameBoard.width, gameBoard.height)
 
     // background color
     // ctx.fillStyle = '#849684'
-    // ctx.fillRect(0, 0, canvas.width, canvas.height)
+    // ctx.fillRect(0, 0, gameBoard.width, gameBoard.height)
     // ctx.fillStyle = 'black'
 
     // bumpers

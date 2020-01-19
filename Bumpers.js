@@ -1,8 +1,8 @@
-function Bumpers(char, x, y, scale) {
+function Bumpers(char, x, height, scale) {
   this.char = char
   this.x = []
   this.y = []
-  for(i=0; i < scale && (i*scale < window.innerHeight+20); i++) {
+  for(i=0; i < height+scale && (i*scale < height+20); i++) { // clean this up
     this.x[i] = x
     this.y[i] = i*scale
   }
@@ -22,7 +22,7 @@ function sameOrLeft() {
 
 function chooseDirection(leftX, rightX) {
   // right bumper can't touch left border
-  if(rightX >= 440) {
+  if(rightX >= 355) { //440
     return -1
     // return sameOrLeft() // might need to be just left
 

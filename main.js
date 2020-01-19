@@ -97,6 +97,7 @@ function keyPress(e){
 function touchPress(e) {
   // move left/right depending on what half of the screen was tapped
   // double tap zoom was disables in the css
+  e.preventDefault()
   let touchX = e.touches[0].clientX
   if(touchX < window.innerWidth/2) {
     user.x -= 10
@@ -109,9 +110,15 @@ function init() {
   window.addEventListener("keydown", keyPress, false)
   window.addEventListener("touchstart", touchPress, false)
 
-  let height =  800//window.innerHeight
-  let width = 480
-  let centerScreen = width/2
+  let height =  window.innerHeight - 20
+  let width = window.innerWidth
+  if(height > 800) {
+    height = 800
+  }
+  if(width > 375) {
+    width = 375
+  }
+  let centerScreen = parseInt(width/2)
 
   score = 0
   level = 0

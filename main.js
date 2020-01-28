@@ -191,7 +191,7 @@ function draw() {
 
     if(crashed()) {
       // write score to file? will someone hack this?
-      alert("Game Over")
+      alert("Game Over! \nYour score: " + score)
       clearInterval(drawTimer)
       clearInterval(roadTimer)
       clearInterval(levelTimer)

@@ -7,6 +7,7 @@ var score
 var drawTimer
 var roadTimer
 var levelTimer
+var startSpeed
 
 var levelIndex
 var hasLeveled
@@ -65,6 +66,13 @@ function drive() {
 
   // right now it's 1 point per board movement
   score ++
+
+  // speed up board to increase game difficulty
+  if(score % 10 == 0 && startSpeed > 0) {
+    startSpeed -= 15
+    clearInterval(roadTimer)
+    roadTimer=setInterval(drive, startSpeed)
+  }
 }
 
 function crashed() {
@@ -148,8 +156,9 @@ function init() {
   leftBumpers = new Bumpers('^', centerScreen-90, height, scale)
   rightBumpers = new Bumpers('^', centerScreen+90, height, scale)
 
+  startSpeed = 500
   drawTimer=setInterval(draw, 10)
-  roadTimer=setInterval(drive, 500)
+  roadTimer=setInterval(drive, startSpeed)
   levelTimer=setInterval(levelChange, 2000)
 }
 

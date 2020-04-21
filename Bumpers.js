@@ -22,7 +22,7 @@ function sameOrLeft() {
 
 function chooseDirection(leftX, rightX) {
   // right bumper can't touch left border
-  if(rightX >= 355) { //440
+  if(rightX >= 345) { //440
     return -1
     // return sameOrLeft() // might need to be just left
 

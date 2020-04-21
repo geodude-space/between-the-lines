@@ -1,5 +1,6 @@
 body {
   font-family: Ubuntu, sans-serif;
+  background-color: grey;
 }
 
 
@@ -15,4 +16,6 @@ canvas {
   bottom: 0px;
   margin: auto;
   touch-action: none;
+  background-color: gray;
+  color: white;
 }

@@ -67,9 +67,12 @@ function drive() {
   // right now it's 1 point per board movement
   score ++
 
+  let increment = 10
+  let speedChange = 15
+  let maxSpeed = 180
   // speed up board to increase game difficulty
-  if(score % 10 == 0 && startSpeed > 0) {
-    startSpeed -= 15
+  if(score % increment == 0 && startSpeed >= maxSpeed) {
+    startSpeed -= speedChange
     clearInterval(roadTimer)
     roadTimer=setInterval(drive, startSpeed)
   }
@@ -91,7 +94,7 @@ function crashed() {
   return false
 }
 
-function keyPress(e){
+function keyDown(e){
   // arrow left
   if(e.keyCode == 37){
     user.x-=10
@@ -115,7 +118,7 @@ function touchPress(e) {
 }
 
 function init() {
-  window.addEventListener("keydown", keyPress, false)
+  window.addEventListener("keydown", keyDown, false)
   window.addEventListener("touchstart", touchPress, false)
 
   let height =  window.innerHeight - 20
@@ -146,7 +149,7 @@ function init() {
   ctx.mozImageSmoothingEnabled = false;  // firefox
   ctx.imageSmoothingEnabled = false;
   ctx.scale(pixelRatio, pixelRatio);
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'white';
   ctx.font = '48px Ubuntu'
 
 
@@ -175,7 +178,7 @@ function draw() {
       if(debug && (i==0 || i==leftBumpers.x.length-1)){ctx.fillStyle = '#849684'}
       ctx.fillText(leftBumpers.char, leftBumpers.x[i], leftBumpers.y[i])
       ctx.fillText(rightBumpers.char, rightBumpers.x[i], rightBumpers.y[i])
-      if(debug) {ctx.fillStyle = 'black'}
+      if(debug) {ctx.fillStyle = 'white'}
       // ctx.addHitRegion({id: "bumpers"});
     }
 

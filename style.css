@@ -1,11 +1,11 @@
 body {
   font-family: Ubuntu, sans-serif;
-  background-color: grey;
+  background-color: black;
 }
 
 
 canvas {
-  border: 1px solid black;
+  border: 1px solid grey;
   font-family: Ubuntu, sans-serif;
   width: 480;
   height: 800;

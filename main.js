@@ -18,6 +18,20 @@ var leftBumpers = []
 var rightBumpers = []
 var debug = false
 
+if ( "serviceWorker" in navigator ) 
+{
+    // register the service worker
+    navigator.serviceWorker.register( "sw.js" ).then( ( reg ) =>
+    {
+        console.log( "service worker has been registered successfully" );
+        serviceWorkerRegistration = reg;
+    }
+    ).catch( ( error ) =>
+    {
+        console.log( "failed to register service worker" , error );
+    });
+}
+
 function levelChange() {
   // rotate levels
   if(levels[level] != levels[levels.length-1]) {

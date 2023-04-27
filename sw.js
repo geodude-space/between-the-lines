@@ -34,15 +34,18 @@ self.addEventListener("install", event => {
 				"index.html", // Main HTML file
 				"logo.png", // Logo
 				"main.js", // Main Javascript file
+				"User.js",
+				"Bumpers.js",
+				
 				"manifest.json", // Manifest file
-				"maskable_icon.png", // Favicon, maskable https://web.dev/maskable-icon
+// 				"maskable_icon.png", // Favicon, maskable https://web.dev/maskable-icon
 // 				"mstile-70x70.png", // Favicon, Windows 8 / IE11
 // 				"mstile-144x144.png", // Favicon, Windows 8 / IE10
 				"mstile-150x150.png", // Favicon, Windows 8 / IE11
 // 				"mstile-310x150.png", // Favicon, Windows 8 / IE11
 // 				"mstile-310x310.png", // Favicon, Windows 8 / IE11
 				"safari-pinned-tab.svg", // Favicon, Safari pinned tab
-				"share.jpg", // Social media sharing
+// 				"share.jpg", // Social media sharing
 				"style.css", // Main CSS file
 			]);
 		})

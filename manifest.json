@@ -6,7 +6,7 @@
         "scope": "/ski_ski/",
 	"theme_color": "#000",
 	"background_color": "#000",
-    	"lang": "en-US"
+    	"lang": "en-US",
 	"icons":[
         {
             "src": "android-chrome-192x192.png",

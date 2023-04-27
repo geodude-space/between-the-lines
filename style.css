@@ -16,6 +16,6 @@ canvas {
   bottom: 0px;
   margin: auto;
   touch-action: none;
-  background-color: gray;
+  background-color: black;
   color: white;
 }

@@ -156,8 +156,8 @@ function init() {
   user = new User('*',  centerScreen, height)
 
   scale = height/28  //parseInt(ctx.measureText('^').width)
-  leftBumpers = new Bumpers('^', centerScreen-90, height, scale)
-  rightBumpers = new Bumpers('^', centerScreen+90, height, scale)
+  leftBumpers = new Bumpers('>', centerScreen-90, height, scale)
+  rightBumpers = new Bumpers('<', centerScreen+90, height, scale)
 
   startSpeed = 500
   drawTimer=setInterval(draw, 10)

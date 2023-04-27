@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /.git
 Allow: /
 
-Sitemap: http://geodude.space
+Sitemap: https://geodude.space
